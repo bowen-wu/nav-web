@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    text-align: center;
+}
+
+main>#container {
+    display: inline-block;
+}
+
+main>#container>div>kbd {
+    display: inline-block;
+    vertical-align: top;
+    width: 4em;
+    height: 4em;
+    border: 1px solid red;
+    margin: 0.2em;
+    position: relative;
+}
+
+main>#container>div>kbd>button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+main>#container>div>kbd:hover>button {
+    display: block;
+}
+
+main>#container>div:nth-child(1)>kbd {
+    width: 3.5em;
+    height: 3.5em;
+}
