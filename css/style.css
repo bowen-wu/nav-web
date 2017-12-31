@@ -2,10 +2,7 @@
     margin: 0;
     padding: 0;
 }
-body{
-    background: url(../wall02-min-min.png) rgb(155, 128, 98) center center no-repeat;
-    background-size: cover;
-}
+
 main {
     text-align: center;
     height:100vh;
@@ -79,4 +76,8 @@ main>#container>.row > .key > .img{
     bottom:0;
     height:16px;
     width:16px;
+}
+body{
+    background: url(../image/wall02-min.png) rgb(155, 128, 98) center center no-repeat;
+    background-size: cover;
 }
