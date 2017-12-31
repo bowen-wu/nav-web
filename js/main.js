@@ -77,7 +77,7 @@ window.onload = function () {
     }
     function shiftKeyboard(parentElement,content){
         var shiftImg = createdNewElement('img', parentElement, 'icon', content);
-        shiftImg.src = '../image/shift.png';
+        shiftImg.src = './image/shift.png';
         shiftImg.parentNode.className = 'key shift';
         var span = createdNewElement('span', parentElement, 'shiftContent');
     }
@@ -90,7 +90,7 @@ window.onload = function () {
         var img = createdNewElement('img', parent, 'img');
         createKeyboardIcon(img, hash[content]);
         img.onerror = function(){
-            img.src = '../image/笑脸1.png';
+            img.src = './image/smilingFace.png';
         };
         parent.id = content;
         btn.onclick = function (event) {
@@ -102,7 +102,7 @@ window.onload = function () {
     }
     function createKeyboardIcon(img,source) {
         if (source === undefined) {
-            img.src = '../image/笑脸1.png';
+            img.src = './image/smilingFace.png';
         } else{
             img.src = 'http://' + source + '/favicon.ico';
         }
