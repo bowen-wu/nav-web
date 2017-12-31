@@ -4,7 +4,7 @@ window.onload = function () {
     var obj= init.obj;
     var hash = init.hash;
     //生成键盘
-    generateKeyboard(obj)
+    generateKeyboard(obj,hash)
     //监听键盘事件
     listenerKeyboardEvent(hash)
     
@@ -21,11 +21,23 @@ window.onload = function () {
             q: 'qq.com',
             w: 'weibo.com',
             e: 'ele.me',
+            i: 'iqiyi.com',
+            o: 'opera.com',
             r: 'renren.com',
+            t: 'tianya.com',
+            y: 'youtube.com',
             t: 'taobao.com',
             a: 'alibabagroup.com',
-            j: 'jd.com',
+            s: 'www.sina.com.cn/', 
+            d: 'bbs.deepin.org',
+            g: 'www.google.com',
+            j: 'www.jd.com',
+            k: 'kaola.com',
             z: 'zhihu.com',
+            c: 'www.chinahr.com',
+            v: 'www.vip.com',
+            b: 'baidu.com',
+            m: 'www.mcdonalds.com.cn'
         }
         var userDefined = JSON.parse(localStorage.getItem('userKey') || 'null');
         if (userDefined) {
@@ -36,35 +48,69 @@ window.onload = function () {
             hash:hash
         }
     }
-    function generateKeyboard(obj) {
+    function generateKeyboard(obj,hash) {
         var container = document.getElementById('container');
         for (var i = 0, len = obj.length; i < len; i++) {
             var div = createdNewElement('div', container, 'row');
             for (var j = 0, leng = obj[i].length; j < leng; j++) {
                 var kbd = createdNewElement('kbd', div, 'key');
                 if (obj[i][j] === '') {
-                    var img = createdNewElement('img', kbd, 'icon', obj[i][j]);
-                    img.src = '../shift.png';
-                    img.parentNode.className = 'key shift';
-                    var span = createdNewElement('span', kbd,'shiftContent');
+                    shiftKeyboard(kbd,obj[i][j]);
                 } else if(typeof obj[i][j] == 'number'){
-                    var span = createdNewElement('span', kbd, 'number', obj[i][j]);
+                    numberKeyboard(kbd,obj[i][j]);
                 }else {
-                    var span = createdNewElement('span', kbd, 'letter', obj[i][j]);
-                    var btn = createdNewElement('button', kbd, 'btn', 'E');
-                    kbd.id = obj[i][j];
-                    btn.onclick = function (event) {
-                        changeUrl(event.target.parentNode.id);
-                    }
+                    letterKeyboard(kbd,hash,obj[i][j]);
                 }
             }
         }
         var shiftContent = container.lastChild.lastChild.lastChild;
         shiftContent.textContent = 'Shift';
-
     }
+    
+
+    function createdNewElement(ele, parent, className,content) {
+        var ele = document.createElement(ele);
+        ele.className= className;
+        parent.appendChild(ele);
+        ele.textContent = content;
+        return ele;
+    }
+    function shiftKeyboard(parentElement,content){
+        var shiftImg = createdNewElement('img', parentElement, 'icon', content);
+        shiftImg.src = '../shift.png';
+        shiftImg.parentNode.className = 'key shift';
+        var span = createdNewElement('span', parentElement, 'shiftContent');
+    }
+    function numberKeyboard(parent,content){
+        var span = createdNewElement('span', parent, 'number', content);
+    }
+    function letterKeyboard(parent,hash,content) {
+        var span = createdNewElement('span', parent, 'letter', content);
+        var btn = createdNewElement('button', parent, 'btn', 'E');
+        var img = createdNewElement('img', parent, 'img');
+        createKeyboardIcon(img, hash[content]);
+        img.onerror = function(){
+            img.src = '../笑脸1.png';
+        };
+        parent.id = content;
+        btn.onclick = function (event) {
+            var clickElement = event.target;
+            var key = clickElement.parentNode.id;
+            var image = clickElement.nextSibling
+            changeUrl(key,image);
+        }
+    }
+    function createKeyboardIcon(img,source) {
+        if (source === undefined) {
+            img.src = '../笑脸1.png';
+        } else{
+            img.src = 'http://' + source + '/favicon.ico';
+        }
+    }
+
     function listenerKeyboardEvent(hash) {
         document.onkeypress = function (event) {
+            // console.log(event.key);
             var key = event.key;
             if (hash[key] != undefined) {
                 window.open('http://' + hash[key], '_blank');
@@ -79,19 +125,11 @@ window.onload = function () {
             }
         }
     }
-
-    function createdNewElement(ele, parent, className,content) {
-        var ele = document.createElement(ele);
-        ele.className= className;
-        parent.appendChild(ele);
-        ele.textContent = content;
-        return ele;
-    }
-
-    function changeUrl(key) {
+    function changeUrl(key,image) {
         var userInput = window.prompt('请输入键位[ ' + key + ' ]对应的网站地址'); //正则　复制
         if ( userInput != null && userInput != '' && userInput.match(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi)) {
             hash[key] = userInput;
+            image.src = 'http://' + userInput + '/favicon.ico';
             localStorage.setItem('userKey', JSON.stringify(hash));
             window.open('http://' + userInput, '_blank');
         } else {
