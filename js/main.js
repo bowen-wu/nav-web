@@ -14,7 +14,7 @@ window.onload = function () {
             0: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
             1: ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
             2: ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-            3: ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+            3: ['','z', 'x', 'c', 'v', 'b', 'n', 'm',''],
             length: 4
         }
         var hash = {
@@ -36,30 +36,46 @@ window.onload = function () {
             hash:hash
         }
     }
-    function generateKeyboard(obj){
+    function generateKeyboard(obj) {
         var container = document.getElementById('container');
         for (var i = 0, len = obj.length; i < len; i++) {
             var div = createdNewElement('div', container, 'row');
             for (var j = 0, leng = obj[i].length; j < leng; j++) {
                 var kbd = createdNewElement('kbd', div, 'key');
-                kbd.id = obj[i][j];
-                var span = createdNewElement('span', kbd, 'letter', obj[i][j])
-                var btn = createdNewElement('button', kbd, 'btn', 'E');
-                btn.onclick = function (event) {
-                    changeUrl(event.target.parentNode.id);
+                if (obj[i][j] === '') {
+                    var img = createdNewElement('img', kbd, 'icon', obj[i][j]);
+                    img.src = '../shift.png';
+                    img.parentNode.className = 'key shift';
+                    var span = createdNewElement('span', kbd,'shiftContent');
+                } else if(typeof obj[i][j] == 'number'){
+                    var span = createdNewElement('span', kbd, 'number', obj[i][j]);
+                }else {
+                    var span = createdNewElement('span', kbd, 'letter', obj[i][j]);
+                    var btn = createdNewElement('button', kbd, 'btn', 'E');
+                    kbd.id = obj[i][j];
+                    btn.onclick = function (event) {
+                        changeUrl(event.target.parentNode.id);
+                    }
                 }
             }
         }
+        var shiftContent = container.lastChild.lastChild.lastChild;
+        shiftContent.textContent = 'Shift';
+
     }
     function listenerKeyboardEvent(hash) {
         document.onkeypress = function (event) {
             var key = event.key;
             if (hash[key] != undefined) {
                 window.open('http://' + hash[key], '_blank');
-            } else if (key.replace(/^[A-Za-z0-9]+$/)) { //　正则　复制
-                changeUrl(key);
+            } else if (key.match(/^[A-Za-z0-9]+$/)) { //　正则　复制
+                if(+key.match(/^[0-9]+$/)){
+                    alert('请输入字母');
+                }else{
+                    changeUrl(key);
+                }
             } else {
-                alert('请输入数字或者字母');
+                alert('请输入字母');
             }
         }
     }

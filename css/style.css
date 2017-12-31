@@ -3,6 +3,8 @@
     padding: 0;
 }
 
+
+
 main {
     text-align: center;
     height:100vh;
@@ -14,7 +16,7 @@ main {
 
 main>#container {
     display: inline-block;
-    padding:0 6px 6px;
+    padding:0 8px 6px;
     background: rgb(222, 222, 222);
     border-radius:16px;
     box-shadow: 0px 1px 0 1px rgba(125,110,100,1),
@@ -23,7 +25,7 @@ main>#container {
     0px 4px 4px 3px rgba(60,50,50,1);
 }
 
-main>#container>div>kbd {
+main>#container> .row > .key {
     width: 50px;
     height: 50px;
     margin: 10px;;
@@ -43,18 +45,30 @@ main>#container>div>kbd {
     0px 4px 2px 3px rgba(30,30,30,1);
 }
 
-main>#container>div>kbd>button {
+main>#container> .row > .key > .btn {
     position: absolute;
     right: 0;
     bottom: 0;
     display: none;
 }
 
-main>#container>div>kbd:hover>button {
+main>#container>.row>.key:hover>.btn {
     display: block;
 }
-
-main>#container>div:nth-child(1)>kbd {
+main>#container> .row:nth-child(3){
+    margin-left:-25px;
+}
+main>#container>.row:nth-child(1)>.key {
     width: 46px;
     height: 46px;
+}
+
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+main>#container>.row>.shift:last-child{
+    width:130px;
 }
