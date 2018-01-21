@@ -64,6 +64,10 @@
         view: null,
         obj: null,
         hash: null,
+        letterKey: null,
+        key: null,
+        edit: null,
+        webIcon: null,
         init: function () {
             this.view = view
             this.model = model
@@ -74,22 +78,46 @@
                 this.hash = this.model.init().hash
             }
             this.generateKeyboard()
+            this.letterKey = view.querySelectorAll('.letterKey')
+            this.edit = view.querySelectorAll('.edit')
+            this.webIcon = view.querySelectorAll('.webIcon')
             this.bindEvents()
         },
         bindEvents: function () {
             document.onkeypress = (event) => {
-                var key = event.key;
-                if (this.hash[key] != undefined) {
-                    window.open('http://' + this.hash[key], '_blank');
-                } else if (key.match(/^[A-Za-z0-9]+$/)) { //　正则　复制
-                    if (+key.match(/^[0-9]+$/)) {
-                        alert('请输入字母');
-                    } else {
-                        this.model.save(key);
-                    }
-                } else {
+                this.key = event.key
+                this.gotoAndSave()
+            }
+            this.letterKey.forEach((ele) => {
+                ele.addEventListener('click', (event) => {
+                    this.key = event.currentTarget.id
+                    this.gotoAndSave()
+                })
+            })
+            this.edit.forEach((item) => {
+                item.addEventListener('click', (event) => {
+                    event.stopPropagation()
+                    this.model.save(event.target.parentNode.id, event.target.nextSibling)
+                })
+            })
+            this.webIcon.forEach((item) => {
+                item.addEventListener('error', (event) => {
+                    event.currentTarget.src = './image/smilingFace.png'
+                })
+            })
+        },
+        gotoAndSave: function(){
+            let key = this.key
+            if (this.hash[key] != undefined) {
+                window.open('http://' + this.hash[key], '_blank')
+            } else if (key.match(/^[A-Za-z0-9]+$/)) { //　正则　复制
+                if (+key.match(/^[0-9]+$/)) {
                     alert('请输入字母');
+                } else {
+                    this.model.save(key);
                 }
+            } else {
+                alert('请输入字母');
             }
         },
         generateKeyboard: function () {
@@ -155,7 +183,8 @@
                 parentEle: parent, 
                 className: 'number', 
                 content: content
-            });
+            })
+            span.parentNode.calssName = 'key number'
         },
         letterKeyboard: function ({parent, hash, content}) {
             var span = this.createdNewElement({
@@ -164,31 +193,23 @@
                 className: 'letter', 
                 content: content
             })
+            span.parentNode.className = 'key letterKey'
             var btn = this.createdNewElement({
                 ele: 'button', 
                 parentEle: parent, 
-                className: 'btn', 
+                className: 'edit', 
                 content: 'E'
             })
             var img = this.createdNewElement({
                 ele: 'img', 
                 parentEle: parent, 
-                className: 'img'
+                className: 'webIcon'
             })
             this.createKeyboardIcon({
                 img: img, 
                 source: hash[content]
             })
-            img.onerror = function () {
-                img.src = './image/smilingFace.png'
-            }
             parent.id = content;
-            btn.onclick = (event) => {
-                var clickElement = event.target
-                var key = clickElement.parentNode.id
-                var image = clickElement.nextSibling
-                this.model.save(key, image)
-            }
         },
         createKeyboardIcon: function ({img, source}) {
             if (source === undefined) {
