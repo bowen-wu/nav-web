@@ -137,6 +137,11 @@ main>#container> .row > .key > .edit {
     right: 0;
     bottom: 0;
     display: none;
+    background-color: #fff;
+    outline: none;
+    border: 1px solid #DEDEDE;
+    padding: 0 2px;
+    border-radius: 2px;
 }
 
 main>#container>.row>.key:hover>.edit {
