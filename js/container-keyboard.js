@@ -51,10 +51,10 @@
         save: function (key, image) {
             var userInput = window.prompt('请输入键位[ ' + key + ' ]对应的网站地址'); //正则　复制
             if (userInput !== null && userInput !== '' && userInput.match(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi)) {
-                this.hash[key] = userInput
+                let saveDate = JSON.parse(localStorage.getItem('userKey')) || this.hash
+                saveDate[key] = userInput
                 image.src = 'http://' + userInput + '/favicon.ico'
-                localStorage.setItem('userKey', JSON.stringify(this.hash))
-                window.location.reload()
+                localStorage.setItem('userKey', JSON.stringify(saveDate))
                 window.open('http://' + userInput, '_blank')
             } else if(userInput === null){
                 return
