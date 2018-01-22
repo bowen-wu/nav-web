@@ -1,45 +1,45 @@
 !function () {
     let view = document.querySelector('#container')
     let model = {
+        obj: {
+            0: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+            1: ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+            2: ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+            3: ['', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ''],
+            length: 4
+        },
+        hash: {
+            q: 'qq.com',
+            w: 'weibo.com',
+            e: 'ele.me',
+            r: '',
+            t: 'taobao.com',
+            y: 'youtube.com',
+            u: '',
+            i: 'iqiyi.com',
+            o: 'opera.com',
+            p: '',
+            a: 'alibabagroup.com',
+            s: 'www.sina.com.cn/',
+            d: 'bbs.deepin.org',
+            f: '',
+            g: 'www.google.com',
+            h: 'hao123.com',
+            j: 'www.jd.com',
+            k: 'kaola.com',
+            l: '',
+            z: 'zhihu.com',
+            x: 'xiedaimala.com',
+            c: 'www.chinahr.com',
+            v: 'www.vip.com',
+            b: 'baidu.com',
+            n: '',
+            m: 'developer.mozilla.org'
+        },
         init: function () {
-            var obj = {
-                0: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-                1: ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-                2: ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-                3: ['', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ''],
-                length: 4
-            }
-            var hash = {
-                q: 'qq.com',
-                w: 'weibo.com',
-                e: 'ele.me',
-                r: '',
-                t: 'taobao.com',
-                y: 'youtube.com',
-                u: '',
-                i: 'iqiyi.com',
-                o: 'opera.com',
-                p: '',
-                a: 'alibabagroup.com',
-                s: 'www.sina.com.cn/',
-                d: 'bbs.deepin.org',
-                f: '',
-                g: 'www.google.com',
-                h: 'hao123.com',
-                j: 'www.jd.com',
-                k: 'kaola.com',
-                l: '',
-                z: 'zhihu.com',
-                x: 'xiedaimala.com',
-                c: 'www.chinahr.com',
-                v: 'www.vip.com',
-                b: 'baidu.com',
-                n: '',
-                m: 'developer.mozilla.org'
-            }
             return {
-                obj: obj,
-                hash: hash
+                obj: this.obj,
+                hash: this.hash
             }
         },
         fetch: function () {
@@ -48,10 +48,10 @@
                 return userDefined
             }
         },
-        save: function (key,image) {
+        save: function (key, image) {
             var userInput = window.prompt('请输入键位[ ' + key + ' ]对应的网站地址'); //正则　复制
             if (userInput != null && userInput != '' && userInput.match(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi)) {
-                this.hash[key] = userInput;
+                this.hash[key] = userInput
                 image.src = 'http://' + userInput + '/favicon.ico';
                 localStorage.setItem('userKey', JSON.stringify(this.hash));
                 window.open('http://' + userInput, '_blank');
@@ -59,7 +59,7 @@
                 alert('请输入有效的网站地址');
             }
         }
-    }
+        }
     let controller = {
         view: null,
         obj: null,
