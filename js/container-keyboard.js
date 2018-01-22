@@ -50,7 +50,6 @@
         },
         save: function (key, image) {
             var userInput = window.prompt('请输入键位[ ' + key + ' ]对应的网站地址'); //正则　复制
-            console.log(userInput)
             if (userInput !== null && userInput !== '' && userInput.match(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi)) {
                 this.hash[key] = userInput
                 image.src = 'http://' + userInput + '/favicon.ico'
