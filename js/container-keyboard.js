@@ -84,10 +84,10 @@
             this.bindEvents()
         },
         bindEvents: function () {
-            document.onkeypress = (event) => {
+            document.addEventListener('keyup', (event) => {
                 this.key = event.key
                 this.gotoAndSave()
-            }
+            })
             this.letterKey.forEach((ele) => {
                 ele.addEventListener('click', (event) => {
                     this.key = event.currentTarget.id
@@ -108,7 +108,7 @@
         },
         gotoAndSave: function(){
             let key = this.key
-            if (this.hash[key] != undefined) {
+            if (this.hash[key] !== '') {
                 window.open('http://' + this.hash[key], '_blank')
             } else if (key.match(/^[A-Za-z0-9]+$/)) { //　正则　复制
                 if (+key.match(/^[0-9]+$/)) {

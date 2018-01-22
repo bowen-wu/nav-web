@@ -6,9 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Perfect Navigation</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="//at.alicdn.com/t/font_526597_bhquyjfjyk3xr.js"></script>
 </head>
 <body>
-<header></header>
+<header>
+    <div class="inner clearfix">
+        <div id="logo" class="logo">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-wu"></use>
+            </svg>
+        </div>
+        <label>
+            <input id="search" class="search" type="text" name="search" placeholder="在 Google 上搜索">
+            <span class="searchIcon">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-search"></use>
+                </svg>
+            </span>
+        </label>
+        <div id="google" class="google searchEngines">谷歌</div>
+        <div id="baidu" class="baidu searchEngines">百度</div>
+    </div>
+</header>
 
 <main>
     <div id="container"></div>
@@ -16,8 +35,8 @@
 
 <footer></footer>
 
-<script src="//at.alicdn.com/t/font_526597_cwso5ov6cwkzw7b9.js"></script>
-<script src="./js/main.js"></script>
+<script src="./js/header-search.js"></script>
+<script src="./js/container-keyboard.js"></script>
 
 
 </body>

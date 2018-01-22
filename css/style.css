@@ -2,6 +2,88 @@
     margin: 0;
     padding: 0;
 }
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+
+
+header{
+    position: fixed;
+    background-color: rgba(255,255,255,0.2);
+    height: 80px;
+    width: 100%;
+}
+header > .inner{
+    width: 960px;
+    margin: 0 auto;
+    /* background-color: #fff; */
+}
+header > .inner > .logo{
+    float: left;
+    margin-right: 115px;
+}
+header > .inner > .logo > .icon{
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    vertical-align: top;
+    fill: #1BA8FF;
+}
+header > .inner > label{
+    float: left;
+    position: relative;
+}
+header > .inner .searchIcon{
+    position: absolute;
+    top: 25px;
+    left: 17px;
+}
+header > .inner .searchIcon > .icon{
+    width: 20px;
+    height: 20px;
+    fill: rgba(175,175,175,0.8)
+}
+header > .inner .search{
+    font-size: 20px;
+    line-height: 24px;
+    padding: 6px 6px 6px 30px;
+    margin: 21px 10px;
+    width: 506px;
+    border: 1px solid #DEDEDE;
+    outline: none;
+    border-radius: 2px;
+    background-color: #FAFAFA;
+    transition: all 0.2s;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+header > .inner .search:hover{
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2), 0 0 3px 1px rgba(0,0,0,0.1);
+}
+header > .inner > div.searchEngines{
+    float: left;
+    margin: 20px 5px;
+    padding: 5px 20px;
+    background-color: rgba(250,250,250,0.4);
+    border-radius: 4px;
+    cursor: pointer;
+    color: rgb(77, 77, 77);
+    transition: all 0.2s;
+}
+header > .inner > div.searchEngines:hover{
+    color: #1BA8FF;
+    transform: scale(1.1)
+}
+
+
+
 
 main {
     text-align: center;
@@ -68,12 +150,6 @@ main>#container>.row:nth-child(1)>.key {
     height: 46px;
 }
 
-.icon {
-    width: 1em; height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
- }
 main>#container>.row>.shift:last-child{
     width:130px;
 }
