@@ -71,6 +71,7 @@
         key: null,
         edit: null,
         webIcon: null,
+        picInput: null,
         init: function () {
             this.view = view
             this.model = model
