@@ -10,6 +10,7 @@
         model: null,
         picInput: null,
         userPic: null,
+        newUserPic: null,
         search: null,
         google: null,
         baidu: null,
@@ -21,6 +22,7 @@
             this.search = view.querySelector('#search')
             this.google = view.querySelector('#google')
             this.baidu = view.querySelector('#baidu')
+            this.newUserPic = view.querySelector('#logo > img')
             this.bindEvents()
         },
         bindEvents: function(){
@@ -62,6 +64,7 @@
                 if (request.readyState === 4) {
                     if (request.status >= 200 && request.status < 300) {
                         alert('上传成功')
+                        // this.newUserPic.src = request.reponseText
                     } else {
                         alert('很抱歉，我并没有服务器去保存您的头像，所以您的头像不能保存')
                     }

@@ -46,6 +46,7 @@ header > .inner > .logo > input[type=file]{
     width: 100%;
     background-color: red;
     opacity: 0;
+    cursor: pointer;
 }
 header > .inner > .logo > .mark{
     position: absolute;
