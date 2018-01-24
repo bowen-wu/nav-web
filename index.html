@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Perfect Navigation</title>
+    <link rel="stylesheet" href="./css/animate.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="//at.alicdn.com/t/font_526597_bhquyjfjyk3xr.js"></script>
 </head>
@@ -30,13 +31,24 @@
 </header>
 
 <main>
-    <div id="container"></div>
+    <div id="container" class="container">
+        <div id="mask" class="mask">
+            <div id="dialog" class="dialog clearfix">
+                <h2>请输入键位<span id="pressupKeyboard"></span>所对应的网址</h2>
+                <input id="inputWebsite" type="text">
+                <span class="reminder">请您输入有效网址</span>
+                <button class="confirm">确认</button>
+                <button class="cancel">取消</button>
+            </div>
+        </div>
+    </div>
 </main>
 
 <footer></footer>
 
 <script src="./js/header-search.js"></script>
-<script src="./js/container-keyboard.js"></script>
+<script src="./js/once-keyboard.js"></script>
+<!-- <script src="./js/container-keyboard.js"></script> -->
 
 
 </body>

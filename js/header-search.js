@@ -38,7 +38,6 @@
             this.baidu.addEventListener('click',() => {
                 this.gotoBaidu()
             })
-            console.log(this.picInput)
             this.picInput.addEventListener('change',(event) => {
                 this.userPic = event.currentTarget.files[0]
                 this.sendRequest()

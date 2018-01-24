@@ -53,6 +53,8 @@
             if (userInput !== null && userInput !== '' && userInput.match(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi)) {
                 let saveDate = JSON.parse(localStorage.getItem('userKey')) || this.hash
                 saveDate[key] = userInput
+                console.log(userInput)
+                console.log(image)
                 image.src = 'http://' + userInput + '/favicon.ico'
                 localStorage.setItem('userKey', JSON.stringify(saveDate))
                 window.open('http://' + userInput, '_blank')
@@ -90,6 +92,7 @@
         bindEvents: function () {
             document.addEventListener('keyup', (event) => {
                 this.key = event.key
+                console.log(event)
                 this.gotoAndSave()
             })
             this.letterKey.forEach((ele) => {
@@ -116,9 +119,10 @@
                 window.open('http://' + this.hash[key], '_blank')
             } else if (key.match(/^[A-Za-z0-9]+$/)) { //　正则　复制
                 if (+key.match(/^[0-9]+$/)) {
-                    alert('请输入字母');
+                    alert('请输入字母')
                 } else {
-                    this.model.save(key);
+                    console.log('key',key)
+                    this.model.save(key)
                 }
             } else {
                 alert('请输入字母');

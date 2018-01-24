@@ -12,7 +12,12 @@
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
- }
+}
+
+ body{
+    background: url(../image/wall02-min.png) rgb(155, 128, 98) center center no-repeat;
+    background-size: cover;
+}
 
 
 header{
@@ -123,7 +128,7 @@ main {
     align-items:center;
 }
 
-main>#container {
+main>.container {
     display: inline-block;
     padding:0 8px 6px;
     background: rgb(222, 222, 222);
@@ -134,7 +139,7 @@ main>#container {
     0px 4px 4px 3px rgba(60,50,50,1);
 }
 
-main>#container> .row > .key {
+main>.container> .row > .key {
     width: 50px;
     height: 50px;
     margin: 10px;
@@ -153,15 +158,15 @@ main>#container> .row > .key {
     0px 3px 0 1px rgba(101, 101, 101,1), 
     0px 4px 2px 3px rgba(30,30,30,1);
 }
-main>#container> .row > .key.letterKey{
+main>.container> .row > .key.letterKey{
     cursor: pointer;
     transition: all 0.2s
 }
-main>#container> .row > .key.letterKey:hover{
+main>.container> .row > .key.letterKey:hover{
     transform: scale(1.1)
 }
 
-main>#container> .row > .key > .edit {
+main>.container> .row > .key > .edit {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -173,28 +178,97 @@ main>#container> .row > .key > .edit {
     border-radius: 2px;
 }
 
-main>#container>.row>.key:hover>.edit {
+main>.container>.row>.key:hover>.edit {
     display: block;
 }
-main>#container> .row:nth-child(3){
+main>.container> .row:nth-child(3){
     margin-left:-25px;
 }
-main>#container>.row:nth-child(1)>.key {
+main>.container>.row:nth-child(1)>.key {
     width: 46px;
     height: 46px;
 }
 
-main>#container>.row>.shift:last-child{
+main>.container>.row>.shift:last-child{
     width:130px;
 }
-main>#container>.row > .key > .webIcon{
+main>.container>.row > .key > .webIcon{
     position:absolute;
     left:0;
     bottom:0;
     height:16px;
     width:16px;
 }
-body{
-    background: url(../image/wall02-min.png) rgb(155, 128, 98) center center no-repeat;
-    background-size: cover;
+
+
+main > .container > .mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(200,200,200,0.4);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+main > .container > .mask.active{
+    display: flex;
+}
+main > .container > .mask > .dialog{
+    background-color: #fff;
+    border-radius: 4px;
+}
+main > .container > .mask > .dialog > h2{
+    font-size: 26px;
+    color: rgb(40,40, 40);
+    padding: 18px;
+}
+main > .container > .mask > .dialog > input[type=text]{
+    border: none;
+    background-color: #FAFFBD;
+    padding: 8px;
+    font-size: 18px;
+    line-height: 20px;
+    width: 250px;
+    margin-bottom: 10px;
+    color: rgb(40,40, 40);
+}
+main > .container > .mask > .dialog > input[type=text]:focus{
+    outline: none;
+}
+main > .container > .mask > .dialog > button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-top: 2px solid #F4F4F4;
+    outline: none;
+    background: none;
+    float: left;
+    width: 50%;
+    padding: 10px 20px;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 600;
+    color: rgb(40,40, 40);
+}
+main > .container > .mask > .dialog > button.confirm{
+    border-right: 1px solid #F4F4F4; 
+}
+main > .container > .mask > .dialog > button:hover{
+    color: #fff;
+    background: linear-gradient(to bottom, rgba(158,219,255,1) 0%,rgba(15,167,255,1) 100%);
+}
+
+main > .container > .mask > .dialog > .reminder{
+    visibility: hidden;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: red;
+}
+main > .container > .mask > .dialog > .reminder.active{
+    visibility: visible
 }
