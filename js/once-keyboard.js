@@ -161,6 +161,7 @@
                 this.gotoUserInputWebsiteAndSave()
             })
             this.cancel.addEventListener('click', (event) => {
+                this.inputWebsite.value = ''
                 this.resetDialog({ userInput: '' })
                 this.mask.classList.remove('active')
             })
